@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" id="signup-form">
+      <h1>SIGNUP USER</h1>
+      <input name="fullName" placeholder="FULL NAME" id="fullName__signup" />
+      <input name="email" placeholder="email" id="email__signup" />
+      <input name="password" placeholder="password" id="password__signup" />
+      <button>Signup</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      const signupForm = document.getElementById("signup-form");
+      console.log(signupForm);
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById("fullName__signup").value;
+        const email = document.getElementById("email__signup").value;
+        const password = document.getElementById("password__signup").value;
+        console.log(fullName,email,password)
+
+        try {
+          const result = await axios.post("/register", {
+            fullName,
+            email,
+            password,
+          });
+          alert("Signedup successfully!");
+        } catch (err) {
+          console.log(err);
+          alert("Something went wrong!");
+        }
+      });
+    </script>
+  </body>
+</html>
